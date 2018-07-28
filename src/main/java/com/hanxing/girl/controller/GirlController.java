@@ -2,11 +2,12 @@ package com.hanxing.girl.controller;
 
 
 import com.hanxing.girl.domain.Girl;
+import com.hanxing.girl.domain.Result;
 import com.hanxing.girl.repository.GirlRepository;
 import com.hanxing.girl.service.GirlService;
+import com.hanxing.girl.utils.ResultUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -36,14 +37,14 @@ public class GirlController {
 
     // 添加一个女生
     @PostMapping(value = "/girls")
-    public Girl addGirl(@Valid Girl girl, BindingResult bindingResult) {
+    public Result addGirl(@Valid Girl girl, BindingResult bindingResult) {
+
         if(bindingResult.hasErrors()){
-            System.out.println(bindingResult.getFieldError().getDefaultMessage());
-            return null;
+            return ResultUtils.error(bindingResult.getFieldError().getDefaultMessage());
         }
         girl.setAge(girl.getAge());
         girl.setCupSize(girl.getCupSize());
-        return girlRepository.save(girl);
+        return ResultUtils.success(girlRepository.save(girl));
     }
 
     // 通过id查询一个女生
