@@ -24,7 +24,7 @@ public class GirlController {
 
     // 事务管理
     @GetMapping(value = "girls/two")
-    public void GirlAddTwo (){
+    public void GirlAddTwo() {
         girlService.GirlAddTwo();
     }
 
@@ -39,8 +39,8 @@ public class GirlController {
     @PostMapping(value = "/girls")
     public Result addGirl(@Valid Girl girl, BindingResult bindingResult) {
 
-        if(bindingResult.hasErrors()){
-            return ResultUtils.error(bindingResult.getFieldError().getDefaultMessage());
+        if (bindingResult.hasErrors()) {
+            return ResultUtils.error(101,bindingResult.getFieldError().getDefaultMessage());
         }
         girl.setAge(girl.getAge());
         girl.setCupSize(girl.getCupSize());
@@ -54,7 +54,7 @@ public class GirlController {
     }
 
     @GetMapping(value = "/girls/age/{age}")
-    public List<Girl> girlfindByAge(@PathVariable("age") Integer age) {
+    public List <Girl> girlfindByAge(@PathVariable("age") Integer age) {
         return girlRepository.findByAge(age);
     }
 
@@ -78,6 +78,17 @@ public class GirlController {
     // 删除一个女生
     public void deleteGirl(@PathVariable("id") Integer id) {
         girlRepository.deleteById(id);
+    }
+
+
+    /**
+     * 需求 根据这个女生的年龄判读他上大学还是初中
+     */
+    @GetMapping(value = "/girls/compareAge/{age}")
+    public void getAge(@PathVariable("age") Integer age) throws Exception {
+
+
+        girlService.compareAge(age);
     }
 
 

@@ -15,9 +15,9 @@ public class ResultUtils {
        return success(null);
     }
 
-    public static Result error(String msg) {
+    public static Result error(int code,String msg) {
         Result result = new Result();
-        result.setCode(1);
+        result.setCode(code);
         result.setMsg(msg);
         return result;
     }
