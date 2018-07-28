@@ -1,6 +1,7 @@
 package com.hanxing.girl.service;
 
 import com.hanxing.girl.domain.Girl;
+import com.hanxing.girl.enums.ResultEnums;
 import com.hanxing.girl.exception.GirlException;
 import com.hanxing.girl.repository.GirlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,9 +34,9 @@ public class GirlService {
         List <Girl> grils = girlRepository.findByAge(age);
         Integer getAge = grils.get(0).getAge();
         if (getAge < 10) {
-            throw new GirlException(100, "你还在上小学");
+            throw new GirlException(ResultEnums.PRIMARY_SCHOOL);
         } else if (getAge >= 10 && getAge < 20) {
-            throw new GirlException(200, "你上中学");
+            throw new GirlException(ResultEnums.MIDDLE_SCHOLLE);
         }
     }
 
