@@ -40,4 +40,15 @@ public class GirlService {
         }
     }
 
+    /**
+     * 通过id查询一个女生
+     * @param id
+     * @return
+     */
+
+    public Girl girlfindOne(Integer id) {
+        return girlRepository.findById(id).get();
+    }
+
+
 }

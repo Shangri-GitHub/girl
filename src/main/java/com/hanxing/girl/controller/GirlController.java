@@ -46,8 +46,12 @@ public class GirlController {
         girl.setCupSize(girl.getCupSize());
         return ResultUtils.success(girlRepository.save(girl));
     }
+    /**
+     * 通过id查询一个女生
+     * @param id
+     * @return
+     */
 
-    // 通过id查询一个女生
     @GetMapping(value = "/girls/{id}")
     public Girl girlfindOne(@PathVariable("id") Integer id) {
         return girlRepository.findById(id).get();
