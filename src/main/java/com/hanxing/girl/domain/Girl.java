@@ -1,5 +1,6 @@
 package com.hanxing.girl.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -11,6 +12,7 @@ public class Girl {
     @Id
     @GeneratedValue
     private int id;
+    @Column(length = 30)
     private String cupSize;
     @Min(value = 18,message = "未成年人禁止入内")
     private int age;

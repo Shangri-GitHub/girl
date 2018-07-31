@@ -50,5 +50,11 @@ public class GirlService {
         return girlRepository.findById(id).get();
     }
 
+    /**
+     * 找到cupsize是B，年龄小于13的女生
+     */
+
+
+
 
 }
